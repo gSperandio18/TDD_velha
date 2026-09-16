@@ -31,10 +31,10 @@ debug: testa_velha.cpp   velha.cpp velha.hpp
 	
 	
 cppcheck: testa_velha.cpp   velha.cpp velha.hpp
-	cppcheck  --enable=warning .
+	cppcheck -i"*/catch.hpp" --enable=warning .
 
 valgrind: testa_velha
-	valgrind --leak-check=yes --log-file=valgrind.rpt testa_velha
+	valgrind --leak-check=yes --log-file=valgrind.rpt ./testa_velha
 
 
 clean:

@@ -38,6 +38,7 @@ int VerificaPlayerVencedor(int velha[3][3]) {
     int pontosX = 0;
     int pontosO = 0;
 
+    // verifica linha
     for (int j = 0; j < 3; j++) {
       if (velha[i][j] == 1) {
         pontosX++;
