@@ -79,5 +79,15 @@ TEST_CASE("Testa velha", "[single-file]") {
   int teste15[3][3] = {{1,2,2},{2,1,1},{1,1,2}};
   REQUIRE(VerificaVelha(teste15) == 0);
 
+  //testes de indefinido/inacabado
+  int teste16[3][3] = {{0,2,0}, {0,1,1}, {0,0,0}};
+  REQUIRE(VerificaVelha(teste16) == -1);
+
+  int teste17[3][3] = {{0,1,0}, {2,0,0}, {1,0,0}};
+  REQUIRE(VerificaVelha(teste17) == -1);
+
+  int teste18[3][3] = {{0,0,0}, {1,2,0}, {0,0,0}};
+  REQUIRE(VerificaVelha(teste18) == -1);
+
 }
 
