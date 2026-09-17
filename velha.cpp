@@ -44,6 +44,11 @@ bool VerificaPlayerVencedor(int velha[3][3], int player) {
     }
   }
 
+  // checar diagonal principal
+  if (velha[0][0] == player && velha[1][1] == player && velha[2][2] == player) {
+    return true;
+  }
+
   return false;
 }
 
