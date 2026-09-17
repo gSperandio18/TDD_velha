@@ -1,6 +1,33 @@
-﻿com o g++  make e demais programas instalados 
-com todos os arquivos no mesmo diretório
-digite "make" neste diretório 
-para cada regra você pode digitar make e nome da regra ex. make cppcheck
+﻿// ========== README.TXT =========== //
 
-fazer um git commit para cada teste ou código adicionado 
+Olá! Esse programa foi feito por Giovanna
+Sperandio para o aprendizado prático de 
+desenvolvimento TDD.
+
+Para rodá-lo, são necessários os seguintes
+pré-requisitos:
+
+- g++
+- make
+- cpplint
+
+Para rodar, basta escrever no bash:
+
+$"make all" 
+$"make cpplint"
+$"make cppcheck"
+$"make gcov"
+$"make valgrind"
+
+Caso você tenha problemas em rodar o gcov, 
+tente rodar primeiro:
+
+$"gcov ./*.cpp"
+
+Depois disso, no meu computador, funcionou 
+corretamente
+
+Obrigada por ler!
+Ass.: gSperandio.
+
+// ================================ //
