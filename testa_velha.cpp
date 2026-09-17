@@ -74,5 +74,10 @@ TEST_CASE("Testa velha", "[single-file]") {
 
   int teste14[3][3] = {{2,2,2},{2,2,2},{1,0,1}};
   REQUIRE(VerificaVelha(teste14) == -2); //verifica impossibilidade do X jogar mais que 5 vezes
+
+  //teste de empate
+  int teste15[3][3] = {{1,2,2},{2,1,1},{1,1,2}};
+  REQUIRE(VerificaVelha(teste15) == 0);
+
 }
 
