@@ -20,6 +20,7 @@
  *
  * \file velha.cpp
  */
+
 #include "velha.hpp"
 
 /**
@@ -30,114 +31,60 @@
  *  Descrever o que a funcao faz
  */
 
-int VerificaPlayerVencedor(int velha[3][3]) {
-  int vencedorX = 0;
-  int vencedorO = 0;
-
+bool VerificaPlayerVencedor(int velha[3][3], int player) {
+  // checar linhas
   for (int i = 0; i < 3; i++) {
-    int pontosX = 0;
-    int pontosO = 0;
-
-    // verifica linha
-    for (int j = 0; j < 3; j++) {
-      if (velha[i][j] == 1) {
-        pontosX++;
-      } else if (velha[i][j] == 2) {
-        pontosO++;
-      }
-
-      if (pontosX == 3) {
-        vencedorX = 1;
-      } else if (pontosO == 3) {
-        vencedorO = 1;
-      }
+    if (velha[i][0] == player && velha[i][1] == player &&
+        velha[i][2] == player) {
+      return true;
     }
   }
 
-  // verifica coluna
-  for (int j = 0; j < 3; j++) {
-    int pontosX = 0;
-    int pontosO = 0;
-
-    for (int i = 0; i < 3; i++) {
-      if (velha[i][j] == 1) {
-        pontosX++;
-      } else if (velha[i][j] == 2) {
-        pontosO++;
-      }
-
-      if (pontosX == 3) {
-        vencedorX = 1;
-      } else if (pontosO == 3) {
-        vencedorO = 1;
-      }
-    }
-  }
-
-  // verifica diagonal principal
-  for (int i = 0; i < 3; i++) {
-    int pontosX = 0;
-    int pontosO = 0;
-
-    for (int j = 0; j < 3; j++) {
-      if (i == j) {
-        if (velha[i][j] == 1) {
-          pontosX++;
-        } else if (velha[i][j] == 2) {
-          pontosO++;
-        }
-
-        if (pontosX == 3) {
-          vencedorX = 1;
-        } else if (pontosO == 3) {
-          vencedorO = 1;
-        }
-      }
-    }
-  }
-
-  // verifica diagonal inversa
-  for (int i = 0; i < 3; i++) {
-    int pontosX = 0;
-    int pontosO = 0;
-
-    for (int j = 0; j < 3; j++) {
-      if (i + j == 2) {
-        if (velha[i][j] == 1) {
-          pontosX++;
-        } else if (velha[i][j] == 2) {
-          pontosO++;
-        }
-
-        if (pontosX == 3) {
-          vencedorX = 1;
-        } else if (pontosO == 3) {
-          vencedorO = 1;
-        }
-      }
-    }
-  }
-
-  if (vencedorO == 1 && vencedorX == 1) {
-    return -2;
-  }
-
-  if (vencedorO == 0 && vencedorX == 0) {
-    return 0;
-  }
-
-  if (vencedorX == 1) {
-    return 1;
-  }
-
-  if (vencedorO == 1) {
-    return 2;
-  }
-
-  return -1;  // se não for nenhuma das condições, está indefinido
+  return false;
 }
 
 int VerificaVelha(int velha[3][3]) {
-  // verificar X vencedor
-  return VerificaPlayerVencedor(velha);
+  // realizar contagem de células
+  int numX = 0;
+  int numO = 0;
+  int numVazio = 0;
+
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      if (velha[i][j] == 0) numVazio++;
+      if (velha[i][j] == 1) numX++;
+      if (velha[i][j] == 1) numO++;
+    }
+  }
+
+  int diferencaEntreXeO = numX - numO;
+
+  if (diferencaEntreXeO < 0 || diferencaEntreXeO > 1) {
+    return -2;  // jogo impossivel
+  }
+
+  bool XVenceu = VerificaPlayerVencedor(velha, 1);
+  bool OVenceu = VerificaPlayerVencedor(velha, 2);
+
+  if (XVenceu && OVenceu) {
+    return -2;  // impossivel
+  }
+
+  if (XVenceu) {
+    return (diferencaEntreXeO == 1) ? 1 : -2;  // Para X ganhar, numX = numO + 1
+  }
+
+  if (OVenceu) {
+    return (diferencaEntreXeO == 0) ? 2 : -2;  // Para O ganhar, numX = numO
+  }
+
+  if (numX > 5 || numO > 4) {
+    return -2;
+  }
+
+  if (numVazio == 0) {
+    return 0;  // tabuleiro cheio
+  }
+
+  return -1;  // jogo indefinido
 }
