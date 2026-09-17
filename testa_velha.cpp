@@ -41,4 +41,20 @@ TEST_CASE("Testa velha", "[single-file]") {
 
   int teste4[3][3] = {{0,2,1}, {2,1,0}, {1,0,0}};
   REQUIRE(VerificaVelha(teste4) == 1);  // verifica x vencedor na diagonal secundária
+
+  //os mesmos 4 testes para vencedor O:
+
+  int teste5[3][3] = {{1,2,1}, {1,2,0}, {0,2,0}};
+  REQUIRE(VerificaVelha(teste5)== 2);  // verifica O vencedor na coluna
+
+  int teste6[3][3] = {{1,1,0}, {2,2,2}, {0,0,1}};
+  REQUIRE(VerificaVelha(teste6) == 2);  // verifica O vencedor na linha
+
+  int teste7[3][3] = {{2,0,0}, {1,2,0}, {1,1,2}};
+  REQUIRE(VerificaVelha(teste7) == 2);  // verifica O vencedor na diagonal principal
+
+  int teste8[3][3] = {{0,1,2}, {1,2,1}, {2,0,0}};
+  REQUIRE(VerificaVelha(teste8) == 2);  // verifica O vencedor na diagonal secundária
+
+
 }
