@@ -32,10 +32,14 @@
  */
 
 bool VerificaPlayerVencedor(int velha[3][3], int player) {
-  // checar linhas
+  // checar linhas e colunas
   for (int i = 0; i < 3; i++) {
     if (velha[i][0] == player && velha[i][1] == player &&
         velha[i][2] == player) {
+      return true;
+    }
+    if (velha[0][i] == player && velha[1][i] == player &&
+        velha[2][i] == player) {
       return true;
     }
   }
@@ -53,7 +57,7 @@ int VerificaVelha(int velha[3][3]) {
     for (int j = 0; j < 3; j++) {
       if (velha[i][j] == 0) numVazio++;
       if (velha[i][j] == 1) numX++;
-      if (velha[i][j] == 1) numO++;
+      if (velha[i][j] == 2) numO++;
     }
   }
 
